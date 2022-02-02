@@ -1,9 +1,13 @@
 module World where
 
-data Object = Obj { obj_name :: String,
-                    obj_longname :: String,
-                    obj_desc :: String }
-   deriving Eq
+data Direction = North | South | East | West
+  deriving Show
+
+data Object = Mug | FullMug | CoffeePot
+   deriving Show
+ 
+data Room = Bedroom | Kitchen | Hall | Street
+   deriving Show
 
 instance Show Object where
    show obj = obj_longname obj
@@ -47,10 +51,10 @@ type Action  = String -> GameData -> (GameData, String)
 -- Things which just update the game state
 type Command = GameData -> (GameData, String)
 
-mug, fullmug, coffeepot :: Object
-mug       = Obj "mug" "a coffee mug" "A coffee mug"
-fullmug   = Obj "mug" "a full coffee mug" "A coffee mug containing freshly brewed coffee"
-coffeepot = Obj "coffee" "a pot of coffee" "A pot containing freshly brewed coffee"
+--mug, fullmug, coffeepot :: Object
+--mug       = Obj "mug" "a coffee mug" "A coffee mug"
+--fullmug   = Obj "mug" "a full coffee mug" "A coffee mug containing freshly brewed coffee"
+--coffeepot = Obj "coffee" "a pot of coffee" "A pot containing freshly brewed coffee"
 
 bedroom, kitchen, hall, street :: Room
 
