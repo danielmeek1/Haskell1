@@ -2,22 +2,19 @@ module Actions where
 
 import World
 
-data Commands = Go Direction | Get Object | Do Action | Quit | Inv | Nothing
-   deriving Show
-  
 actions :: String -> Maybe Action
-actions "go"      = Just Go
-actions "get"     = Just Get
-actions "drop"    = Just Put
-actions "pour"    = Just Pour
-actions "examine" = Just Examine
-actions "drink"   = Just Drink
-actions "open"    = Just Open
+actions "go"      = Just go
+actions "get"     = Just get
+actions "drop"    = Just put
+actions "pour"    = Just pour
+actions "examine" = Just examine
+actions "drink"   = Just drink
+actions "open"    = Just open
 actions _         = Nothing
 
 commands :: String -> Maybe Command
-commands "quit"      = Just Quit
-commands "inventory" = Just Inv
+commands "quit"      = Just quit
+commands "inventory" = Just inv
 commands _           = Nothing
 
 {- Given a direction and a room to move from, return the room id in
@@ -38,7 +35,6 @@ move dir rm = findExit dir (exits rm)
 findExit :: String -> [Exit] -> Maybe String
 findExit dir [] = Nothing
 findExit dir (e:es) = (\e es -> if (exit_dir e) == dir then Just (room e) else findExit dir es) e es
-
 {- Return True if the object appears in the room. -}
 
 objectHere :: String -> Room -> Bool

@@ -1,13 +1,9 @@
 module World where
 
-data Direction = North | South | East | West
-  deriving Show
-
-data Object = Mug | FullMug | CoffeePot
-   deriving Show
- 
-data Room = Bedroom | Kitchen | Hall | Street
-   deriving Show
+data Object = Obj { obj_name :: String,
+                    obj_longname :: String,
+                    obj_desc :: String }
+   deriving Eq
 
 instance Show Object where
    show obj = obj_longname obj
@@ -28,7 +24,7 @@ data GameData = GameData { location_id :: String, -- where player is
                            poured :: Bool, -- coffee is poured
                            caffeinated :: Bool, -- coffee is drunk
                            finished :: Bool -- set to True at the end
-                         } 
+                         }
 
 won :: GameData -> Bool
 won gd = location_id gd == "street"
