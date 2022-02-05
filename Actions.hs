@@ -2,22 +2,22 @@ module Actions where
 
 import World
 
-data Command = Go Direction | Get Object | Do Action | Quit |Inventory
+data Command = Go Direction | Get Object | Do Action | Quit | Inv | Nothing
    deriving Show
   
 actions :: String -> Maybe Action
-actions "go"      = Just go
-actions "get"     = Just get
-actions "drop"    = Just put
-actions "pour"    = Just pour
-actions "examine" = Just examine
-actions "drink"   = Just drink
-actions "open"    = Just open
+actions "go"      = Just Go
+actions "get"     = Just Get
+actions "drop"    = Just Put
+actions "pour"    = Just Pour
+actions "examine" = Just Examine
+actions "drink"   = Just Drink
+actions "open"    = Just Open
 actions _         = Nothing
 
 commands :: String -> Maybe Command
-commands "quit"      = Just quit
-commands "inventory" = Just inv
+commands "quit"      = Just Quit
+commands "inventory" = Just Inv
 commands _           = Nothing
 
 {- Given a direction and a room to move from, return the room id in

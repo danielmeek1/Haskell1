@@ -51,10 +51,10 @@ type Action  = String -> GameData -> (GameData, String)
 -- Things which just update the game state
 type Command = GameData -> (GameData, String)
 
---mug, fullmug, coffeepot :: Object
---mug       = Obj "mug" "a coffee mug" "A coffee mug"
---fullmug   = Obj "mug" "a full coffee mug" "A coffee mug containing freshly brewed coffee"
---coffeepot = Obj "coffee" "a pot of coffee" "A pot containing freshly brewed coffee"
+mug, fullmug, coffeepot :: Object
+mug       = Obj "mug" "a coffee mug" "A coffee mug"
+fullmug   = Obj "mug" "a full coffee mug" "A coffee mug containing freshly brewed coffee"
+coffeepot = Obj "coffee" "a pot of coffee" "A pot containing freshly brewed coffee"
 
 bedroom, kitchen, hall, street :: Room
 
