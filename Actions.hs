@@ -2,7 +2,7 @@ module Actions where
 
 import World
 
-data Command = Go Direction | Get Object | Do Action | Quit | Inv | Nothing
+data Commands = Go Direction | Get Object | Do Action | Quit | Inv | Nothing
    deriving Show
   
 actions :: String -> Maybe Action
