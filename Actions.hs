@@ -30,7 +30,11 @@ Nothing
 -}
 
 move :: String -> Room -> Maybe String
-move dir rm = undefined
+move dir rm = findExit dir (exits rm)
+
+findExit :: String -> [Exit] -> Maybe String
+findExit dir [] = Nothing
+findExit dir (e:es) = (\e es -> if (exit_dir e) == dir then Just (room e) else findExit dir es) e es
 
 {- Return True if the object appears in the room. -}
 
@@ -98,7 +102,16 @@ e.g.
 -}
 
 go :: Action
-go dir state = undefined
+go dir state = do 
+      let newRoom = move dir (getRoomData state)     
+
+      if newRoom == Nothing then 
+         (state,"You can't move that way!")
+      else
+         (state {location_id =  (checkRoom newRoom) } ,checkRoom newRoom ++ ", OK")
+
+checkRoom :: Maybe String ->  String 
+checkRoom (Just a) = a
 
 {- Remove an item from the current room, and put it in the player's inventory.
    This should only work if the object is in the current room. Use 'objectHere'

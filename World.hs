@@ -24,7 +24,7 @@ data GameData = GameData { location_id :: String, -- where player is
                            poured :: Bool, -- coffee is poured
                            caffeinated :: Bool, -- coffee is drunk
                            finished :: Bool -- set to True at the end
-                         }
+                         } 
 
 won :: GameData -> Bool
 won gd = location_id gd == "street"
