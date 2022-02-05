@@ -2,6 +2,9 @@ module Actions where
 
 import World
 
+data Commands = Go Directions | Get Object | Do Action | Quit | Inv | Nothing
+   deriving Show
+
 actions :: String -> Maybe Action
 actions "go"      = Just go
 actions "get"     = Just get

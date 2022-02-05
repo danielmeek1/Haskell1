@@ -1,5 +1,14 @@
 module World where
 
+data Directions = North | South | East | West
+  deriving Show
+
+data Objects = Mug | FullMug | CoffeePot
+   deriving Show
+ 
+data Rooms = Bedroom | Kitchen | Hall | Street
+   deriving Show
+
 data Object = Obj { obj_name :: String,
                     obj_longname :: String,
                     obj_desc :: String }
