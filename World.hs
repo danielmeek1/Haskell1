@@ -6,9 +6,6 @@ data Direction = North | South | East | West
 data Object = Mug | FullMug | CoffeePot
    deriving Show
  
-data Room = Bedroom | Kitchen | Hall | Street
-   deriving Show
-
 instance Show Object where
    show obj = obj_longname obj
 
