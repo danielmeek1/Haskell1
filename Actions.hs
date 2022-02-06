@@ -3,7 +3,6 @@ module Actions where
 import World
 
 data Commands = Go Directions | Get Object | Do Action | Quit | Inv | Nothing
-   deriving Show
 
 actions :: String -> Maybe Action
 actions "go"      = Just go
@@ -13,12 +12,12 @@ actions "pour"    = Just pour
 actions "examine" = Just examine
 actions "drink"   = Just drink
 actions "open"    = Just open
-actions _         = Nothing
+actions _         = Prelude.Nothing
 
 commands :: String -> Maybe Command
 commands "quit"      = Just quit
 commands "inventory" = Just inv
-commands _           = Nothing
+commands _           = Prelude.Nothing
 
 {- Given a direction and a room to move from, return the room id in
    that direction, if it exists.
@@ -36,7 +35,7 @@ move :: String -> Room -> Maybe String
 move dir rm = findExit dir (exits rm)
 
 findExit :: String -> [Exit] -> Maybe String
-findExit dir [] = Nothing
+findExit dir [] = Prelude.Nothing
 findExit dir (e:es) = (\e es -> if (exit_dir e) == dir then Just (room e) else findExit dir es) e es
 {- Return True if the object appears in the room. -}
 
@@ -107,7 +106,7 @@ go :: Action
 go dir state = do 
       let newRoom = move dir (getRoomData state)     
 
-      if newRoom == Nothing then 
+      if newRoom == Prelude.Nothing then 
          (state,"You can't move that way!")
       else
          (state {location_id =  (checkRoom newRoom) } ,checkRoom newRoom ++ ", OK")
