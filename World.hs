@@ -1,9 +1,9 @@
 module World where
 
-data Direction = North | South | East | West
+data Directions = North | South | East | West
   deriving Show
 
-data Object = Mug | FullMug | CoffeePot
+data Objects = Mug | FullMug | CoffeePot
    deriving Show
  
 instance Show Object where
@@ -25,7 +25,7 @@ data GameData = GameData { location_id :: String, -- where player is
                            poured :: Bool, -- coffee is poured
                            caffeinated :: Bool, -- coffee is drunk
                            finished :: Bool -- set to True at the end
-                         } 
+                         }
 
 won :: GameData -> Bool
 won gd = location_id gd == "street"
