@@ -6,6 +6,14 @@ data Directions = North | South | East | West
 data Objects = Mug | FullMug | CoffeePot
    deriving Show
  
+data Rooms = Bedroom | Kitchen | Hall | Street
+   deriving Show
+
+data Object = Obj { obj_name :: String,
+                    obj_longname :: String,
+                    obj_desc :: String }
+   deriving Eq
+
 instance Show Object where
    show obj = obj_longname obj
 
