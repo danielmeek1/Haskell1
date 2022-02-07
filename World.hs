@@ -1,12 +1,12 @@
 module World where
 
-data Directions = North | South | East | West
+data Direction = North | South | East | West
   deriving Show
 
-data Objects = Mug | FullMug | CoffeePot
+data Object   = Mug | FullMug | CoffeePot | Key | Mask | Wallet | Matric
    deriving Show
  
-data Rooms = Bedroom | Kitchen | Hall | Street
+data Room = Bedroom | Kitchen | Hall | Street | Garden
    deriving Show
 
 data Object = Obj { obj_name :: String,
@@ -65,7 +65,7 @@ mask      = Obj "mask" "A cloth mask" "A mask to prevent diseases"
 wallet    = Obj "wallet" "A leather wallet" "A wallet with money in it"
 matric    = Obj "matriculation" "A plastic card" "Matriculation card to get into buildings"
 
-bedroom, kitchen, hall, street :: Room
+bedroom, kitchen, hall, street, living, garden :: Room
 
 bedroom = Room "You are in your bedroom."
                [Exit "north" "To the north is a kitchen. " "kitchen"]
