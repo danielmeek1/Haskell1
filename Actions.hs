@@ -218,11 +218,11 @@ drink obj state
 
 open :: Action
 open obj state
-   |caffeinated state && location_id state == "hall" = do
+   |caffeinated state && location_id state == "hall" && carrying state "key" && carrying state "wallet" && carrying state "mask" && carrying state "matriculation" = do
       let room = getRoomData state
       let updatedHall = room{room_desc = openedhall, exits = openedexits }
       (updateRoom state "hall" updatedHall, "The door has been opened.")
-   |otherwise = (state, "You need to have drank coffee and be in the hall to open the door")
+   |otherwise = (state, "You need to have drank coffee and be in the hall to open the door\nYou also need to have a key to open the door, a mask & matriculation card to go to class, and a wallet to buy lunch")
 
 {- Don't update the game state, just list what the player is carrying -}
 

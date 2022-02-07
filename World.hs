@@ -56,10 +56,14 @@ type Action  = String -> GameData -> (GameData, String)
 -- Things which just update the game state
 type Command = GameData -> (GameData, String)
 
-mug, fullmug, coffeepot :: Object
+mug, fullmug, coffeepot, key, mask, wallet, matric :: Object
 mug       = Obj "mug" "a coffee mug" "A coffee mug"
 fullmug   = Obj "mug" "a full coffee mug" "A coffee mug containing freshly brewed coffee"
 coffeepot = Obj "coffee" "a pot of coffee" "A pot containing freshly brewed coffee"
+key       = Obj "key" "A metal key" "A key to the front door"
+mask      = Obj "mask" "A cloth mask" "A mask to prevent diseases"
+wallet    = Obj "wallet" "A leather wallet" "A wallet with money in it"
+matric    = Obj "matriculation" "A plastic card" "Matriculation card to get into buildings"
 
 bedroom, kitchen, hall, street :: Room
 
@@ -73,8 +77,18 @@ kitchen = Room "You are in the kitchen."
                [coffeepot]
 
 hall = Room "You are in the hallway. The front door is closed. "
-            [Exit "east" "To the east is a kitchen. " "kitchen"]
+            [Exit "east" "To the east is a kitchen. " "kitchen",
+             Exit "west" "To the west is a living room" "living",
+             Exit "south" "To the south is a garden" "garden"]
             []
+living = Room "You are in the living room." 
+         [Exit "east" "To the east is a hallway" "hall"]
+         [key,mask,wallet,matric]
+
+garden = Room "You are in the garden."
+         [Exit "north" "To the north is a hallway" "hall"]
+         []
+
 
 -- New data about the hall for when we open the door
 
@@ -89,7 +103,9 @@ street = Room "You have made it out of the house."
 gameworld = [("bedroom", bedroom),
              ("kitchen", kitchen),
              ("hall", hall),
-             ("street", street)]
+             ("street", street),
+             ("living", living),
+             ("garden",garden)]
 
 initState :: GameData
 initState = GameData "bedroom" gameworld [] False False False
