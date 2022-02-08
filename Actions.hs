@@ -1,6 +1,7 @@
 module Actions where
 
 import World
+import qualified Data.ByteString as BS
 
 data Commands = Go Directions | Get Object | Do Action | Quit | Inv
 
@@ -12,12 +13,15 @@ actions "pour"    = Just pour
 actions "examine" = Just examine
 actions "drink"   = Just drink
 actions "open"    = Just open
+actions "save"    = Just saveAction
 actions _         = Prelude.Nothing
 
 commands :: String -> Maybe Command
 commands "quit"      = Just quit
 commands "inventory" = Just inv
 commands _           = Prelude.Nothing
+
+
 
 {- Given a direction and a room to move from, return the room id in
    that direction, if it exists.
@@ -140,6 +144,7 @@ go dir state = do
 --removes maybe from a variable (only used if not nothing)
 removeMaybe :: Maybe a ->  a
 removeMaybe (Just a) = a
+removeMaybe Nothing = error "No value"
 
 {- Remove an item from the current room, and put it in the player's inventory.
    This should only work if the object is in the current room. Use 'objectHere'
@@ -223,6 +228,24 @@ open obj state
       let updatedHall = room{room_desc = openedhall, exits = openedexits }
       (updateRoom state "hall" updatedHall, "The door has been opened.")
    |otherwise = (state, "You need to have drank coffee and be in the hall to open the door\nYou also need to have a key to open the door, a mask & matriculation card to go to class, and a wallet to buy lunch")
+
+
+
+load :: String -> IO GameData
+load file = do
+         s <- readFile file
+         putStrLn s
+         return (read s::GameData)
+
+saveAction :: Action
+saveAction file state = do
+   let saved = save state file
+   (state,"Game Saved")
+
+save :: GameData -> String -> IO()
+save state file = do
+   writeFile file (show state)
+
 
 {- Don't update the game state, just list what the player is carrying -}
 

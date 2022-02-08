@@ -12,7 +12,7 @@ data Rooms = Bedroom | Kitchen | Hall | Street
 data Object = Obj { obj_name :: String,
                     obj_longname :: String,
                     obj_desc :: String }
-   deriving Eq
+   deriving (Eq,Read)
 
 instance Show Object where
    show obj = obj_longname obj
@@ -20,12 +20,12 @@ instance Show Object where
 data Exit = Exit { exit_dir :: String,
                    exit_desc :: String,
                    room :: String }
-   deriving Eq
+   deriving (Eq,Read)
 
 data Room = Room { room_desc :: String,
                    exits :: [Exit],
                    objects :: [Object] }
-   deriving Eq
+   deriving (Eq,Read)
 
 data GameData = GameData { location_id :: String, -- where player is
                            world :: [(String, Room)],
@@ -33,7 +33,7 @@ data GameData = GameData { location_id :: String, -- where player is
                            poured :: Bool, -- coffee is poured
                            caffeinated :: Bool, -- coffee is drunk
                            finished :: Bool -- set to True at the end
-                         }
+                         } deriving (Show,Read)
 
 won :: GameData -> Bool
 won gd = location_id gd == "street"
@@ -47,8 +47,8 @@ instance Show Room where
              showInv' (x:xs) = show x ++ ", " ++ showInv' xs
                                   
 
-instance Show GameData where
-    show gd = show (getRoomData gd)
+--instance Show GameData where
+--    show gd = show (getRoomData gd)
 
 -- Things which do something to an object and update the game state
 type Action  = String -> GameData -> (GameData, String)
