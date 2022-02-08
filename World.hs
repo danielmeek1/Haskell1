@@ -60,7 +60,7 @@ mug, fullmug, coffeepot, key, mask, wallet, matric :: Object
 mug       = Obj "mug" "a coffee mug" "A coffee mug"
 fullmug   = Obj "mug" "a full coffee mug" "A coffee mug containing freshly brewed coffee"
 coffeepot = Obj "coffee" "a pot of coffee" "A pot containing freshly brewed coffee"
-key       = Obj "key" "A metal key" "A key to the front door"
+key       = Obj "key" "A metal key" "A key to the front door, why was it in the garden?"
 mask      = Obj "mask" "A cloth mask" "A mask to prevent diseases"
 wallet    = Obj "wallet" "A leather wallet" "A wallet with money in it"
 matric    = Obj "matriculation" "A plastic card" "Matriculation card to get into buildings"
@@ -69,7 +69,7 @@ bedroom, kitchen, hall, street, living, garden :: Room
 
 bedroom = Room "You are in your bedroom."
                [Exit "north" "To the north is a kitchen. " "kitchen"]
-               [mug]
+               [wallet]
 
 kitchen = Room "You are in the kitchen."
                [Exit "south" "To the south is your bedroom. " "bedroom",
@@ -83,11 +83,11 @@ hall = Room "You are in the hallway. The front door is closed. "
             []
 living = Room "You are in the living room." 
          [Exit "east" "To the east is a hallway" "hall"]
-         [key,mask,wallet,matric]
+         [mug,mask,matric]
 
 garden = Room "You are in the garden."
          [Exit "north" "To the north is a hallway" "hall"]
-         []
+         [key]
 
 
 -- New data about the hall for when we open the door
