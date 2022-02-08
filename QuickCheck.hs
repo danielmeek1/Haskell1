@@ -30,7 +30,5 @@ instance Arbitrary Rooms where
 
 
 
-
-
 prop_remove :: [Object] -> Bool 
-prop_remove xs = 
+prop_remove xs = findObj xs 
