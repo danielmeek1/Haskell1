@@ -1,6 +1,6 @@
 module World where
 
-data Direction = North | South | East | West
+data Directions = North | South | East | West
   deriving Show
 
 data Objects   = Mug | FullMug | CoffeePot | Key | Mask | Wallet | Matric

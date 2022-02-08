@@ -11,9 +11,24 @@ instance Arbitrary Direction where
                        return West]
 
 instance Arbitrary Object where
-    arbitrary = oneOf [return 
-         
-    ]
+    arbitrary = oneOf [return Mug,
+                       return FullMug,
+                       return CoffeePot,
+                       return Key,
+                       return Mask,
+                       return Wallet,
+                       return Matric]
+
+instance Arbitrary Rooms where
+    arbitrary = oneOf [return Bedroom,
+                       return Kitchen,
+                       return Hall,
+                       return Key,
+                       return Street,
+                       return Garden]
+                   
+
+
 
 
 
