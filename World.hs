@@ -73,20 +73,25 @@ bedroom = Room "You are in your bedroom."
 
 kitchen = Room "You are in the kitchen."
                [Exit "south" "To the south is your bedroom. " "bedroom",
-                Exit "west" "To the west is a hallway. " "hall"]
+                Exit "west" "To the west is a hallway. " "hall",
+                Exit "east" "To the east is a pantry. " "pantry"]
                [coffeepot]
+
+pantry = Room "You are in the pantry."
+               [Exit "west" "To the west is a kitchen. " "kitchen"]
+               [mug]
 
 hall = Room "You are in the hallway. The front door is closed. "
             [Exit "east" "To the east is a kitchen. " "kitchen",
-             Exit "west" "To the west is a living room" "living",
-             Exit "south" "To the south is a garden" "garden"]
+             Exit "west" "To the west is a living room. " "living",
+             Exit "south" "To the south is a garden. " "garden"]
             []
 living = Room "You are in the living room." 
-         [Exit "east" "To the east is a hallway" "hall"]
-         [mug,mask,matric]
+         [Exit "east" "To the east is a hallway. " "hall"]
+         [mask,matric]
 
 garden = Room "You are in the garden."
-         [Exit "north" "To the north is a hallway" "hall"]
+         [Exit "north" "To the north is a hallway. " "hall"]
          [key]
 
 
@@ -105,7 +110,8 @@ gameworld = [("bedroom", bedroom),
              ("hall", hall),
              ("street", street),
              ("living", living),
-             ("garden",garden)]
+             ("garden",garden),
+             ("pantry",pantry)]
 
 initState :: GameData
 initState = GameData "bedroom" gameworld [] False False False
