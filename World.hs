@@ -3,10 +3,10 @@ module World where
 data Directions = North | South | East | West
   deriving Show
 
-data Objects   = Mug | FullMug | CoffeePot | Key | Mask | Wallet | Matric
+data Objects   = Mug | FullMug | CoffeePot | Key | Mask | Wallet | Matric | MazeMap
    deriving Show
  
-data Rooms = Bedroom | Kitchen | Hall | Street | Garden
+data Rooms = Bedroom | Kitchen | Hall | Street | Garden | Maze0 | Maze1 | Maze2 | Maze3 | Maze4 | Maze5 | Maze6 | Mazec
    deriving Show
 
 data Object = Obj { obj_name :: String,
