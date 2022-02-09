@@ -151,3 +151,70 @@ integer                       =  token int
 
 symbol                        :: String -> Parser String
 symbol xs                     =  token (string xs)
+
+
+
+parseDirection :: Parser Direction 
+parseDirections 
+     = do string "north" ||| string "North"
+          return North 
+   ||| do string "south" ||| string "South"
+          return South 
+   ||| do string "east"  ||| string "East"
+          return East  
+   ||| do string "west"  ||| string "West"
+          return West
+   ||| do string "out"  ||| string "Out"
+          return Out
+
+parseObject :: Parser Object 
+parseDirections 
+     = do string "mug" 
+          return Mug 
+   ||| do string "fullmug"
+          return FullMug  
+   ||| do string "coffeepot"
+          return coffeepot
+   ||| do string "key"
+          return Key 
+   ||| do string "mask"
+          return Mask 
+   ||| do string "wallet"
+          return Wallet 
+   ||| do String "matric"
+          return Matric 
+   ||| do String "mazeMap"
+          return MazeMap 
+   ||| do String "door"
+          return Door
+          
+        
+
+--Command syntax : = "go" <direction>
+parseCommand :: Parser Command 
+parseCommand
+   = do string "go" |||  string "Go"
+        space
+        d <- parseDirection
+        return (Go d)
+   ||| do string "get" ||| string "Get"
+          space 
+          a <- parseObject 
+          return (Get a)
+   ||| do string "drop" ||| string "Drop"
+          space 
+          a <- parseObject 
+          return (Drop a)
+   ||| do string "Examine" ||| string "examine"
+          space 
+          a <- parseObject 
+          return (Examine a)
+   ||| do string "open" ||| string "Open"
+          space 
+          a <- parseObject 
+          return (Examine a)
+
+runParser :: String -> Maybe Command
+runParser input = case parse parseCommand input of
+                  [(cmd, "")] -> Just cmd
+                  _ -> Nothing
