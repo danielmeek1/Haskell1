@@ -163,7 +163,9 @@ parseDirections
    ||| do string "east"  ||| string "East"
           return East  
    ||| do string "west"  ||| string "West"
-          return West 
+          return West
+   ||| do string "out"  ||| string "Out"
+          return Out
 
 parseObject :: Parser Object 
 parseDirections 

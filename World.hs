@@ -1,6 +1,6 @@
 module World where
 
-data Directions = North | South | East | West
+data Directions = North | South | East | West | Out 
   deriving Show
 
 data Objects   = Mug | FullMug | CoffeePot | Key | Mask | Wallet | Matric | MazeMap | Door
@@ -9,7 +9,7 @@ data Objects   = Mug | FullMug | CoffeePot | Key | Mask | Wallet | Matric | Maze
 data Rooms = Bedroom | Kitchen | Hall | Street | Garden | Maze0 | Maze1 | Maze2 | Maze3 | Maze4 | Maze5 | Maze6 | Mazec
    deriving Show
 
-data Commands = Go Direction | Get Object | Drop Object | Examine Object 
+data Commands = Go Directions | Get Objects | Drop Objects | Examine Objects 
 
 data Object = Obj { obj_name :: String,
                     obj_longname :: String,
