@@ -13,7 +13,6 @@ actions "pour"    = Just pour
 actions "examine" = Just examine
 actions "drink"   = Just drink
 actions "open"    = Just open
-actions "save"    = Just saveAction
 actions _         = Prelude.Nothing
 
 commands :: String -> Maybe Command
@@ -88,10 +87,12 @@ updateRoom gd rmid rmdata
    |roomExists rmid gameworld = gd{ world = updateGameWorld rmid rmdata (world gd) }
    |otherwise = gd{ world = world gd ++ [(rmid,rmdata)]}
 
+{- Checks that a room of a given name exists within the game world -}
 roomExists ::  String -> [(String,Room)]-> Bool
 roomExists _ [] = False
 roomExists rm (room:rooms) = (\(name,_) ros -> (name == rm) || roomExists rm ros) room rooms
 
+{- updates a room of a given name with updated information, which is stored in a list to be stored in the game world -}
 updateGameWorld :: String -> Room -> [(String,Room)] -> [(String,Room)]
 updateGameWorld rmid rm gw = filter (\(a,_) -> a /= rmid) gw ++ [(rmid,rm)]
 
@@ -230,18 +231,15 @@ open obj state
    |otherwise = (state, "You need to have drank coffee and be in the hall to open the door\nYou also need to have a key to open the door, a mask & matriculation card to go to class, and a wallet to buy lunch")
 
 
-
+{-Given a file path, returns the GameData stored in that file
+(currently does not work)-}
 load :: String -> IO GameData
 load file = do
          s <- readFile file
          putStrLn s
          return (read s::GameData)
 
-saveAction :: Action
-saveAction file state = do
-   let saved = save state file
-   (state,"Game Saved")
-
+{-Given a GameData and file path, stores the data in the GameData in the given location to be loaded again later-}
 save :: GameData -> String -> IO()
 save state file = do
    writeFile file (show state)
