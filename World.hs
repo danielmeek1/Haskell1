@@ -6,7 +6,7 @@ data Directions = North | South | East | West | Out
 data Objects   = Mug | FullMug | CoffeePot | Key | Mask | Wallet | Matric | MazeMap
    deriving Show
  
-data Rooms = Bedroom | Kitchen | Hall | Street | Garden | Maze0 | Maze1 | Maze2 | Maze3 | Maze4 | Maze5 | Maze6 | Mazec
+data Rooms = Bedroom | Kitchen | Hall | Street | Garden | Maze0 | Maze1 | Maze2 | Maze3 | Maze4 | Maze5 | Maze6 | Mazec | Pantry | LivingRoom
    deriving Show
 
 data Commands = Go Directions | Get Objects | Drop Objects | Examine Objects 
