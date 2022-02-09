@@ -183,6 +183,8 @@ parseDirections
           return Matric 
    ||| do String "mazeMap"
           return MazeMap 
+   ||| do String "door"
+          return Door
           
         
 
@@ -202,6 +204,10 @@ parseCommand
           a <- parseObject 
           return (Drop a)
    ||| do string "Examine" ||| string "examine"
+          space 
+          a <- parseObject 
+          return (Examine a)
+   ||| do string "open" ||| string "Open"
           space 
           a <- parseObject 
           return (Examine a)

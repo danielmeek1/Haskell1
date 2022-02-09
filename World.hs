@@ -3,7 +3,7 @@ module World where
 data Directions = North | South | East | West
   deriving Show
 
-data Objects   = Mug | FullMug | CoffeePot | Key | Mask | Wallet | Matric | MazeMap
+data Objects   = Mug | FullMug | CoffeePot | Key | Mask | Wallet | Matric | MazeMap | Door
    deriving Show
  
 data Rooms = Bedroom | Kitchen | Hall | Street | Garden | Maze0 | Maze1 | Maze2 | Maze3 | Maze4 | Maze5 | Maze6 | Mazec
