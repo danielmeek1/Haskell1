@@ -25,3 +25,13 @@ examine - gives a description of an item in your inventory
 open - opens whatever you are trying to open if you have a key
 inventory - lists all the items in your inventory
 quit - quits the program
+
+Here are the names of the items of the game:
+
+Coffee Mug - "mug"
+Coffee Pot - "coffee"
+Key - "key"
+Face Mask - "mask"
+Wallet - "wallet"
+Matriculation Card - "matriculation"
+Maze Map - "map"
