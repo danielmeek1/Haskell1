@@ -1,7 +1,7 @@
 module Actions where
 
 import World
-import qualified Data.ByteString as BS
+
 
 data Commands = Go Directions | Get Object | Do Action | Quit | Inv
 
