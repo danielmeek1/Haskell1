@@ -30,7 +30,8 @@ instance Arbitrary Room where
                        return garden,
                        return pantry]
 
-                 
+instance Arbitrary GameData where
+    arbitrary = oneof [return initState]
 
 
 
@@ -38,9 +39,16 @@ instance Arbitrary Room where
 --prop_remove xs = findObj xs 
 
 
---Check addObject return a room containing the object
-prop_containsObject :: Object -> Room -> Bool
-prop_containsObject o rm = objectHere (obj_name o) (addObject o rm) 
+-- Check addObject return a room containing the object, and that objectHere returns true if the object is there
+prop_addObject :: Object -> Room -> Bool
+prop_addObject o rm = objectHere (obj_name o) (addObject o rm) 
+
+
+
+-- Check removeObject return a room without the given object (adds object to room to ensure it's actually in the room)
+prop_removeObject :: Object -> Room -> Bool
+prop_removeObject o rm = not (objectHere (obj_name o) (removeObject (obj_name o) (addObject o rm)))
+
 
 return []
 runTests = $quickCheckAll
